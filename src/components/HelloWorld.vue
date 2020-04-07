@@ -2,13 +2,19 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <logout-component></logout-component>
   </div>
 </template>
 
 
 <script>
+  import Logout from './Logout'
+
   export default {
     name: 'HelloWorld',
+    components: {
+      'logout-component': Logout
+    },
     data() {
       return {
         msg: 'Welcome to Your Vue.js App'

@@ -4,37 +4,55 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Star from '@/components/Star'
 import SignUp from '@/components/SignUp'
+import store from '@/store/store'
 
 Vue.use(Router);
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated) {
+    next();
+  } else {
+    next('/login')
+  }
+};
+
+const ifNotAuthenticated = (to, from, next) => {
+  if (!store.getters.isAuthenticated) {
+    next();
+  } else {
+    next('/helloworld')
+  }
+};
+
 
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'Star',
-      component: Star
+      component: Star,
     },
     {
       path: '/helloworld',
       name: 'HelloWorld',
       component: HelloWorld,
-      beforeEnter: (to, from, next) => {
-        console.log(to);
-        console.log(from);
-        console.log(isAuthenticated);
-        console.log('!!!!!!!!!!!!');
-        next('Login')
-      }
+      beforeEnter: ifAuthenticated,
     },
     {
       path: '/login/',
       name: 'Login',
-      component: Login
+      component: Login,
+      beforeEnter: ifNotAuthenticated,
     },
     {
       path: '/signup/',
       name: 'SignUp',
-      component: SignUp
+      component: SignUp,
+      beforeEnter: ifNotAuthenticated,
+    },
+    {
+      path: "*",
+      redirect: '/'
     }
   ]
 })

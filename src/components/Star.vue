@@ -1,9 +1,16 @@
 <template>
   <div class="index">
-    <router-link class="logo" to="../login">
-      <!--<img src="../assets/logo.png">-->
-      <img src="../assets/logoStar.png">
-    </router-link>
+    <template v-if="this.$store.getters.isAuthenticated">
+      <router-link class="logo" to="../helloworld">
+        <img src="../assets/logoStar.png">
+      </router-link>
+    </template>
+
+    <template v-else>
+      <router-link class="logo" to="../login">
+        <img src="../assets/logoStar.png">
+      </router-link>
+    </template>
   </div>
 </template>
 

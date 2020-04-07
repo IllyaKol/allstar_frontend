@@ -4,7 +4,7 @@
       <div class="image">
         <img src="../assets/star_150x150.png">
       </div>
-      <form class="loginForm" v-on:submit.prevent="Login" method="post">
+      <form class="loginForm" v-on:submit.prevent="login" method="post">
         <div class="loginBackground">
           <p v-if="error">
             {{ error }}
@@ -13,15 +13,15 @@
             <input class="form-control form-control-sm" id="email"
                    v-model="email"
                    type="email" name="email"
-                   placeholder="Email">
+                   placeholder="Email" required>
           </p>
           <p>
             <input class="form-control form-control-sm" id="password"
                    v-model="password" type="password"
-                   name="password" placeholder="Password">
+                   name="password" placeholder="Password" required>
           </p>
           <p>
-            <input class="submitButton" type="submit" value="Login"
+            <input class="btn btn-group-sm" type="submit" value="Login"
                    v-on:keyup.enter="submit">
           </p>
         </div>
@@ -32,7 +32,6 @@
 
 <script>
   import HelloWorld from "./HelloWorld";
-  import {myLoginRoutine} from 'the-created-shared-file-containing-auth-api-logic'
 
 
   export default {
@@ -51,19 +50,14 @@
       swipeHandler() {
         this.$router.push({name: 'SignUp'})
       },
-      Login() {
-        axios({
-          method: 'post',
-          url: this.action,
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        }).then(response => {
-          this.$router.push({name: 'HelloWorld'})
-        }).catch(error => {
-          this.error = error.response.data['error']
-        });
+      login() {
+        let email = this.email;
+        let password = this.password;
+        let self = this;
+        let url = this.action;
+        this.$store.dispatch('login', {email, password, self, url})
+          .then(() => this.$router.push({name: 'HelloWorld'}))
+          .catch(err => console.log(err))
       }
     },
     data() {
@@ -91,8 +85,8 @@
     border-style: solid;
   }
 
-  .submitButton {
-    display: none;
-  }
+  /*.submitButton {*/
+    /*display: none;*/
+  /*}*/
 
 </style>
