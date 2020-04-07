@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <template v-if="this.$store.getters.isAuthenticated">
-      <router-link class="logo" to="../helloworld">
+      <router-link class="logo" to="../vote">
         <img src="../assets/logoStar.png">
       </router-link>
     </template>

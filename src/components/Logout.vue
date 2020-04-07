@@ -1,6 +1,6 @@
 <template>
   <div class="logout">
-    <button v-on:click="logout">LOGOUT</button>
+    <button v-on:click="logout" class="btn btn-outline-success">LOGOUT</button>
   </div>
 </template>
 

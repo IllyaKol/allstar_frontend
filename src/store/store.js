@@ -27,13 +27,14 @@ export default new Vuex.Store({
   actions: {
     login({commit}, data) {
       return new Promise((resolve, reject) => {
-
         let url = data['url'];
         let vueObj = data['self'];
         delete data['self'];
         delete data['url'];
 
         commit('auth_request');
+        console.log('#TODO: change this code.');
+        // url = 'http://192.168.0.105:8000/user/login/';
         axios({
           url: url,
           data: data,
