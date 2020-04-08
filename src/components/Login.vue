@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import HelloWorld from "./HelloWorld";
+  import Home from "./Home";
 
 
   export default {
@@ -56,7 +56,7 @@
         let self = this;
         let url = this.action;
         this.$store.dispatch('login', {email, password, self, url})
-          .then(() => this.$router.push({name: 'HelloWorld'}))
+          .then(() => this.$router.push({name: 'Home'}))
           .catch(err => console.log(err))
       }
     },

@@ -32,9 +32,11 @@
         headers: {'Authorization': 'Bearer ' + this.$store.state.token}
       })
         .then(response => {
-          this.stars = response.data
+          this.stars = response.data;
+          this.$store.commit('init_stars', this.stars);
         })
         .catch(error => {
+          console.log(error)
         })
     },
     data() {
@@ -50,18 +52,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    border: darkslategrey;
-    border-style: solid;
-  }
-
-  .flex-container .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 20px;
-    width: 250px;
-    height: 450px;
-  }
-
-  .flex-container .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+    /*border: darkslategrey;*/
+    /*border-style: solid;*/
   }
 </style>

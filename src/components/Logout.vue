@@ -5,14 +5,14 @@
 </template>
 
 <script>
-  import Login from './Login'
+  import Star from './Star'
 
   export default {
     name: 'Logout',
     methods: {
       logout() {
         this.$store.dispatch('logout').then(() => {
-          this.$router.push({name: 'Login'})
+          this.$router.push({name: 'Star'})
         })
       }
     }

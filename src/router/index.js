@@ -21,7 +21,7 @@ const ifNotAuthenticated = (to, from, next) => {
   if (!store.getters.isAuthenticated) {
     next();
   } else {
-    next('/helloworld')
+    next('/vote')
   }
 };
 
