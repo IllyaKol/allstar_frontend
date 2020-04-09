@@ -36,7 +36,7 @@ export default new Vuex.Store({
     },
     addUserVote(state, id) {
       let votes = state.user.vote_ids;
-      if (!(votes.includes(id))) {
+      if (!votes.includes(id)) {
         votes.push(id)
       }
     },
@@ -44,6 +44,12 @@ export default new Vuex.Store({
       let votes = state.user.vote_ids;
       if (votes.includes(id)) {
         votes.splice(votes.indexOf(id), 1);
+      }
+    },
+    updateUserField(state, obj) {
+      let field = obj['field'];
+      if (field in state.user) {
+       state.user[field] = obj['fieldData']
       }
     },
     auth_request(state) {

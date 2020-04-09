@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Login from '@/components/Login'
-import Star from '@/components/Star'
-import SignUp from '@/components/SignUp'
-import Vote from '@/components/Vote'
 import store from '@/store/store'
+
+import Star from '@/components/Star'
+import Vote from '@/components/Vote'
+import Login from '@/components/Login'
+import SignUp from '@/components/SignUp'
+import Profile from '@/components/Profile'
+import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router);
 
@@ -37,6 +39,12 @@ export default new Router({
       path: '/helloworld',
       name: 'HelloWorld',
       component: HelloWorld,
+      beforeEnter: ifAuthenticated,
+    },
+    {
+      path: '/profile/',
+      name: 'Profile',
+      component: Profile,
       beforeEnter: ifAuthenticated,
     },
     {
