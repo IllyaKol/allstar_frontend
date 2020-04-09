@@ -1,11 +1,8 @@
 <template>
   <div class="cards">
-    <div class="menu-bar">
-      <logout-component></logout-component>
-    </div>
+    <menu-bar-component></menu-bar-component>
     <div class="flex-container">
       <div v-for="star in stars">
-        <!--{{ star }}-->
         <card-component :star="star"></card-component>
       </div>
     </div>
@@ -14,20 +11,18 @@
 
 <script>
   import Card from './Card'
-  import Logout from './Logout'
-
-  console.log('#TODO: change this code!');
+  import MenuBar from './MenuBar'
+  import {baseUrl} from "../config/config";
 
   export default {
-    name: 'Home',
+    name: 'Vote',
     components: {
       'card-component': Card,
-      'logout-component': Logout
+      'menu-bar-component': MenuBar
     },
     created: function () {
       axios({
-        url: 'http://0.0.0.0:8000/data',
-        // url: 'http://192.168.0.105:8000/data/',
+        url: baseUrl + '/data/',
         method: 'GET',
         headers: {'Authorization': 'Bearer ' + this.$store.state.token}
       })
@@ -52,7 +47,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /*border: darkslategrey;*/
-    /*border-style: solid;*/
+    margin-top: 20px;
+    /*background-color: #F0F0F0;*/
   }
 </style>

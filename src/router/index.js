@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Star from '@/components/Star'
 import SignUp from '@/components/SignUp'
-import Home from '@/components/Home'
+import Vote from '@/components/Vote'
 import store from '@/store/store'
 
 Vue.use(Router);
@@ -41,8 +41,8 @@ export default new Router({
     },
     {
       path: '/vote',
-      name: 'Home',
-      component: Home,
+      name: 'Vote',
+      component: Vote,
       beforeEnter: ifAuthenticated,
     },
     {

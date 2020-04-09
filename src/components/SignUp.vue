@@ -40,9 +40,11 @@
 </template>
 
 <script>
+  import {baseUrl} from "../config/config";
+
   export default {
     name: 'SignUp',
-    mounted: function () {
+    mounted() {
       let self = this;
       window.onkeyup = function (e) {
         if (e.target.nodeName !== 'INPUT' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
@@ -57,7 +59,7 @@
       singUp() {
         axios({
           method: 'post',
-          url: this.action,
+          url: baseUrl + '/user/create/',
           data: {
             email: this.email,
             first_name: this.firstName,
@@ -70,16 +72,6 @@
           let emailError = error.response.data['email'][0];
           this.error = emailError.charAt(0).toUpperCase() + emailError.slice(1, -1)
         });
-
-
-        // fetch(this.action, data).then(response => {
-        //   if (response.status === 201) {
-        //     this.error = null;
-        //     this.$router.push({name: 'Login'})
-        //   } else {
-        //     this.error = 'Try again!';
-        //   }
-        // })
       }
     },
     data() {
@@ -89,7 +81,6 @@
         firstName: '',
         lastName: '',
         password: null,
-        action: 'http://0.0.0.0:8000/user/create/',
       }
     }
   }

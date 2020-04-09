@@ -8,31 +8,32 @@
       <h3 class="card-title">{{ star.fullname.slice(0, 15) }}</h3>
       <p class="card-info">
         Age: {{ star.age }}
+        <br>
+        Club: {{ star.club }}
       </p>
-      <p class="card-club">
-        {{star.id}} | Club: FC Barcelona
-        <button v-on:click="voting" class="button">{{ buttonName }} ({{ star.votes }})</button>
-      </p>
+      <div class="card-voting">
+        <button v-on:click="voting" class="button"><img :src="require(`../assets/${img_src}.png`)">  x {{ star.votes }}</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import {baseUrl} from "../config/config";
+
   export default {
     name: 'Card',
     props: ['star'],
     mounted() {
-      let variable = '+';
       if (this.$store.getters.userVoted(this.star.id)) {
-        variable = '-'
+        this.img_src = "star_gray_30x30"
       }
-      this.buttonName = variable;
     },
     methods: {
       voting() {
         let starId = this.star.id;
         axios({
-          url: 'http://0.0.0.0:8000/voting/' + starId,
+          url: baseUrl + '/voting/' + starId + '/',
           method: 'GET',
           headers: {'Authorization': 'Bearer ' + this.$store.state.token}
         })
@@ -40,11 +41,11 @@
             if (response.status === 200 && response.data['message'] === 'ADDED') {
               this.$store.commit('incrementVote', starId);
               this.$store.commit('addUserVote', starId);
-              this.buttonName = '-';
+              this.img_src = "star_gray_30x30";
             } else if (response.status === 200 && response.data['message'] === 'DELETED') {
               this.$store.commit('decrementVote', starId);
               this.$store.commit('removeUserVote', starId);
-              this.buttonName = '+'
+              this.img_src = "star_white_30x30";
             }
           })
           .catch(error => {
@@ -54,7 +55,7 @@
     },
     data() {
       return {
-        buttonName: null
+        img_src: "star_white_30x30"
       }
     }
   }
@@ -79,12 +80,14 @@
     padding: 20px 0 0 0;
   }
 
+  .card-voting {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
   .button {
     border: none;
-    outline: 0;
-    height: 25%;
-    bottom: 0;
-    display: inline-block;
     padding: 8px;
     color: white;
     background-color: #2e8b57;
@@ -92,6 +95,10 @@
     cursor: pointer;
     width: 100%;
     font-size: 18px;
+  }
+
+  .button:hover {
+    background-color: #1b5233;
   }
 
 </style>

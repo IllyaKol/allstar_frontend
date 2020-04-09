@@ -21,7 +21,7 @@
                    name="password" placeholder="Password" required>
           </p>
           <p>
-            <input class="btn btn-group-sm" type="submit" value="Login"
+            <input class="submitButton" type="submit" value="Login"
                    v-on:keyup.enter="submit">
           </p>
         </div>
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-  import Home from "./Home";
+  import Vote from "./Vote";
+  import {baseUrl} from "../config/config"
 
 
   export default {
     name: 'Login',
     mounted: function () {
-      // utils.swipingPage(this, 'SignUp')
       let self = this;
       window.onkeyup = function (e) {
         if (e.target.nodeName !== 'INPUT' &&
@@ -54,9 +54,9 @@
         let email = this.email;
         let password = this.password;
         let self = this;
-        let url = this.action;
+        let url = this.url;
         this.$store.dispatch('login', {email, password, self, url})
-          .then(() => this.$router.push({name: 'Home'}))
+          .then(() => this.$router.push({name: 'Vote'}))
           .catch(err => console.log(err))
       }
     },
@@ -65,7 +65,7 @@
         error: null,
         email: null,
         password: null,
-        action: 'http://0.0.0.0:8000/user/login/',
+        url: baseUrl + '/user/login/',
       }
     }
   }

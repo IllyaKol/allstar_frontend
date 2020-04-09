@@ -1,30 +1,30 @@
 <template>
   <div class="index">
-    <template v-if="this.$store.getters.isAuthenticated">
-      <router-link class="logo" to="../vote">
-        <img src="../assets/logoStar.png">
+      <router-link class="logo" :to="url">
+        <img src="../assets/logo.png">
       </router-link>
-    </template>
-
-    <template v-else>
-      <router-link class="logo" to="../login">
-        <img src="../assets/logoStar.png">
-      </router-link>
-    </template>
   </div>
 </template>
 
 <script>
   export default {
-
+    name: 'Star',
+    mounted() {
+      if (this.$store.getters.isAuthenticated) {
+        this.url = "../vote"
+      }
+    },
+    data() {
+      return {
+        url: '../login'
+      }
+    }
   }
 </script>
 
 <style scoped>
   .logo {
     background-size: 100%;
-    /*width: 200px;*/
-    /*height: 200px;*/
     border-radius: 50%;
   }
 

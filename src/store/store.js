@@ -72,8 +72,6 @@ export default new Vuex.Store({
         delete data['url'];
 
         commit('auth_request');
-        console.log('#TODO: change this code.');
-        // url = 'http://192.168.0.105:8000/user/login/';
         axios({
           url: url,
           data: data,
