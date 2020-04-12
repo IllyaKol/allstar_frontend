@@ -40,7 +40,6 @@
 
 <script>
   import MenuBar from "./MenuBar";
-  import {baseUrl} from "../config/config";
 
   export default {
     name: 'Profile',
@@ -64,16 +63,15 @@
         }
 
         axios({
-          url: baseUrl + '/user/update/',
+          url: '/user/update/',
           method: 'PUT',
-          headers: {'Authorization': 'Bearer ' + this.$store.state.token},
           data: data
         })
           .then(response => {
             for (let key in data) {
-              console.log(key);
               this.$store.commit('updateUserField', {field:key, fieldData: data[key]})
             }
+            this.error = 'Success';
           })
           .catch(error => {
             console.log(error)

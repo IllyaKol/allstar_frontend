@@ -12,7 +12,6 @@
 <script>
   import Card from './Card'
   import MenuBar from './MenuBar'
-  import {baseUrl} from "../config/config";
 
   export default {
     name: 'Vote',
@@ -22,9 +21,8 @@
     },
     created: function () {
       axios({
-        url: baseUrl + '/data/',
+        url: '/data/',
         method: 'GET',
-        headers: {'Authorization': 'Bearer ' + this.$store.state.token}
       })
         .then(response => {
           this.stars = response.data;

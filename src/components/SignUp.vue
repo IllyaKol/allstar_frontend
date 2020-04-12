@@ -40,8 +40,6 @@
 </template>
 
 <script>
-  import {baseUrl} from "../config/config";
-
   export default {
     name: 'SignUp',
     mounted() {
@@ -59,7 +57,7 @@
       singUp() {
         axios({
           method: 'post',
-          url: baseUrl + '/user/create/',
+          url: '/user/create/',
           data: {
             email: this.email,
             first_name: this.firstName,

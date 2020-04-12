@@ -19,8 +19,6 @@
 </template>
 
 <script>
-  import {baseUrl} from "../config/config";
-
   export default {
     name: 'Card',
     props: ['star'],
@@ -33,9 +31,8 @@
       voting() {
         let starId = this.star.id;
         axios({
-          url: baseUrl + '/voting/' + starId + '/',
+          url: '/voting/' + starId + '/',
           method: 'GET',
-          headers: {'Authorization': 'Bearer ' + this.$store.state.token}
         })
           .then(response => {
             if (response.status === 200 && response.data['message'] === 'ADDED') {

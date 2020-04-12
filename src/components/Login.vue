@@ -32,8 +32,6 @@
 
 <script>
   import Vote from "./Vote";
-  import {baseUrl} from "../config/config"
-
 
   export default {
     name: 'Login',
@@ -65,7 +63,7 @@
         error: null,
         email: null,
         password: null,
-        url: baseUrl + '/user/login/',
+        url: '/user/login/',
       }
     }
   }

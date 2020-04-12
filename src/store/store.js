@@ -84,10 +84,11 @@ export default new Vuex.Store({
           method: 'POST'
         })
           .then(resp => {
-            const token = resp.data.token;
             const user = resp.data;
+            const token = 'Bearer ' + resp.data.token;
             localStorage.setItem('token', token);
             axios.defaults.headers.common['Authorization'] = token;
+            Cookies.set('token', token, {expires: 7});
             commit('auth_success', token);
             commit('init_user', user);
             resolve(resp)
@@ -105,6 +106,7 @@ export default new Vuex.Store({
         commit('logout');
         localStorage.removeItem('token');
         delete axios.defaults.headers.common['Authorization'];
+        Cookies.remove('token');
         resolve()
       })
     }
