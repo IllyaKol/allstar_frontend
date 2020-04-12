@@ -1,23 +1,42 @@
 <template>
-  <div class="cards">
-    <menu-bar-component></menu-bar-component>
-    <div class="flex-container">
-      <div v-for="star in stars">
-        <card-component :star="star"></card-component>
+  <v-touch @swipeleft="swipeLeft" @swiperight="swipeRight">
+    <div class="cards">
+      <div class="flex-container">
+        <div v-for="star in stars">
+          <card-component :star="star"></card-component>
+        </div>
       </div>
     </div>
-  </div>
+  </v-touch>
 </template>
 
 <script>
   import Card from './Card'
-  import MenuBar from './MenuBar'
+  import {redirect} from "../utils/utils";
 
   export default {
     name: 'Vote',
     components: {
       'card-component': Card,
-      'menu-bar-component': MenuBar
+    },
+    methods: {
+      swipeRight() {
+        redirect(this, 'Star')
+      },
+      swipeLeft() {
+        redirect(this, 'Profile')
+      }
+    },
+    mounted() {
+      let self = this;
+      window.onkeyup = function (e) {
+        if (e.key === 'ArrowLeft') {
+          redirect(self, 'Star')
+        }
+        if (e.key === 'ArrowRight') {
+          redirect(self, 'Profile')
+        }
+      }
     },
     created: function () {
       axios({
@@ -41,6 +60,12 @@
 </script>
 
 <style scoped>
+  .cards {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+  }
+
   .flex-container {
     display: flex;
     flex-wrap: wrap;

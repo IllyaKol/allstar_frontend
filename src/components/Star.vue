@@ -1,17 +1,36 @@
 <template>
-  <div class="index">
+  <v-touch @swipeleft="swipeLeft">
+    <div class="index">
       <router-link class="logo" :to="url">
         <img src="../assets/logo.png">
       </router-link>
-  </div>
+    </div>
+  </v-touch>
 </template>
 
 <script>
+  import {redirect} from "../utils/utils";
+  import Vote from './Vote'
+
   export default {
     name: 'Star',
+    methods: {
+      swipeLeft() {
+        if (this.$store.getters.isAuthenticated) {
+          redirect(this, 'Vote')
+        }
+      }
+    },
     mounted() {
       if (this.$store.getters.isAuthenticated) {
-        this.url = "../vote"
+        this.url = "../vote";
+
+        let self = this;
+        window.onkeyup = function (e) {
+          if (e.key === 'ArrowRight') {
+            self.$router.push({name: 'Vote'})
+          }
+        }
       }
     },
     data() {

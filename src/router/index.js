@@ -5,6 +5,7 @@ import store from '@/store/store'
 import Star from '@/components/Star'
 import Vote from '@/components/Vote'
 import Login from '@/components/Login'
+import Logout from '@/components/Logout'
 import SignUp from '@/components/SignUp'
 import Profile from '@/components/Profile'
 import HelloWorld from '@/components/HelloWorld'
@@ -64,6 +65,12 @@ export default new Router({
       name: 'SignUp',
       component: SignUp,
       beforeEnter: ifNotAuthenticated,
+    },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout,
+      beforeEnter: ifAuthenticated,
     },
     {
       path: "*",
