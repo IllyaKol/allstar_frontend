@@ -49,7 +49,7 @@ export default new Vuex.Store({
     updateUserField(state, obj) {
       let field = obj['field'];
       if (field in state.user) {
-       state.user[field] = obj['fieldData']
+        state.user[field] = obj['fieldData']
       }
     },
     auth_request(state) {
@@ -103,11 +103,18 @@ export default new Vuex.Store({
     },
     logout({commit}) {
       return new Promise((resolve, reject) => {
-        commit('logout');
-        localStorage.removeItem('token');
-        delete axios.defaults.headers.common['Authorization'];
-        Cookies.remove('token');
-        resolve()
+        axios({url: '/user/logout/', method: 'GET'})
+          .then(response => {
+            commit('logout');
+            localStorage.removeItem('token');
+            delete axios.defaults.headers.common['Authorization'];
+            Cookies.remove('token');
+            resolve()
+          })
+          .catch(error => {
+            console.log(error);
+          });
+
       })
     }
   },

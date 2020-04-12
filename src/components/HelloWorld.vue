@@ -40,6 +40,6 @@
   }
 
   a {
-    color: #42b983;
+    color: #39b472;
   }
 </style>

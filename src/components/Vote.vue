@@ -46,6 +46,5 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 20px;
-    /*background-color: #F0F0F0;*/
   }
 </style>

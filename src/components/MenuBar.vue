@@ -52,7 +52,7 @@
     display: flex;
     position: relative;
     flex-wrap: wrap;
-    background-color: #2e8b57;
+    background-color: #39b472;
   }
 
   .name {
@@ -77,7 +77,7 @@
   .dropdown-menu {
     left: 0;
     padding: 0;
-    color: #2e8b57;
+    color: #39b472;
     border-radius: 0;
     font-weight: 500;
   }
@@ -90,6 +90,6 @@
   .menu-element:hover {
     color: white;
     cursor: pointer;
-    background-color: #2e8b57;
+    background-color: #39b472;
   }
 </style>

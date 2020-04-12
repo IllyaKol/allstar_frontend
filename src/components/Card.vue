@@ -87,7 +87,7 @@
     border: none;
     padding: 8px;
     color: white;
-    background-color: #2e8b57;
+    background-color: #39b472;
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -95,7 +95,8 @@
   }
 
   .button:hover {
-    background-color: #1b5233;
+    /*background-color: #1b5233;*/
+    background-color: #2e8b57;
   }
 
 </style>

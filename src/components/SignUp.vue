@@ -94,8 +94,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: red;
-    border-style: solid;
   }
 
   .submitButton {
