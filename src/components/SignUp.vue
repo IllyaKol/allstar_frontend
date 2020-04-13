@@ -97,6 +97,6 @@
   }
 
   .submitButton {
-    display: none;
+    visibility: hidden;
   }
 </style>

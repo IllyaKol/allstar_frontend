@@ -81,8 +81,8 @@
     align-items: center;
   }
 
-  /*.submitButton {*/
-    /*display: none;*/
-  /*}*/
+  .submitButton {
+    visibility: hidden;
+  }
 
 </style>
