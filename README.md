@@ -18,16 +18,4 @@ npm run build
 npm run build --report
 ```
 
-## DB Setup
-```
-CREATE DATABASE all_star;
-CREATE ROLE django_auth WITH LOGIN PASSWORD 'asdfgh';
-GRANT ALL PRIVILEGES ON DATABASE all_star TO django_auth;
-
-python manage.py make migrations
-python manage.py migrate
-
-python manage.py createsuperuser
-```
-
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
