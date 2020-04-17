@@ -8,6 +8,7 @@ import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import SignUp from '@/components/SignUp'
 import Profile from '@/components/Profile'
+import Statistic from '@/components/Statistic'
 import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router);
@@ -52,6 +53,12 @@ export default new Router({
       path: '/vote',
       name: 'Vote',
       component: Vote,
+      beforeEnter: ifAuthenticated,
+    },
+    {
+      path: '/statistic',
+      name: 'Statistic',
+      component: Statistic,
       beforeEnter: ifAuthenticated,
     },
     {

@@ -11,8 +11,10 @@
           <div class="menu-element" v-on:click="moveTo('Vote')">Voting</div>
         </li>
         <li>
-          <div class="menu-element" v-on:click="moveTo('Profile')">Profile
-          </div>
+          <div class="menu-element" v-on:click="moveTo('Statistic')">Statistic</div>
+        </li>
+        <li>
+          <div class="menu-element" v-on:click="moveTo('Profile')">Profile</div>
         </li>
         <li>
           <div class="menu-element" v-on:click="logout">Logout</div>
